@@ -28,6 +28,24 @@ ll binary_exponentiation(ll base, int power) {
     return result;
 }
 
+int add(int a, int b) {
+    return (a % mod + b % mod) % mod;
+}
+
+int sub(int a, int b) {
+    int result = (a % mod - b % mod) % mod;
+    if (result < 0) result += mod;
+    return result;
+}
+
+// priority of multiplication is the same to %
+// so the brackets are important
+int mul(int a, int b) {
+    return 1ll * (a % mod) * (b % mod) % mod;
+    // a % mod = mod - 1 and b % mod = mod - 1
+    // will cast to ll because of (mod - 1) * (mod - 1)
+}
+
 int main() {
     IO;
     return 0;
