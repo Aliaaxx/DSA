@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+#define endl "\n"
+#define ll long long
+#define IO ios::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+using namespace std;
+
+int gcd(int a, int b) {
+    if (!b) return a; // if b == 0 then the ans is a
+    return gcd(b, a % b);
+}
+
+int lcm (int a, int b) {
+    //return (a * b) / gcd(a, b);
+    return a / gcd(a, b) * b; // avoid any overflow
+}
+
+const int mod = 1e9 + 7;
+ll binary_exponentiation(ll base, int power) {
+    ll result = 1;
+    while (power > 0) {
+        if (power % 2 != 0) {
+            result *= base;
+            // power -= 1;
+        }
+        base *= base;
+        power /=  2;
+    }
+    return result;
+}
+
+int main() {
+    IO;
+    return 0;
+}
