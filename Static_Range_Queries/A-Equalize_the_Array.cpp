@@ -1,4 +1,5 @@
 ///*** https://www.hackerrank.com/contests/101hack39/challenges/equality-in-a-array ***///
+
 #include <bits/stdc++.h>
 #define endl "\n"
 #define ll long long
