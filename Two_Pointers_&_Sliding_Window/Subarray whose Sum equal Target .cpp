@@ -1,3 +1,7 @@
+// Variable Size Window
+
+// Given unsorted Array with Positive numbers and want to find summation of subarray equal to target
+
 #include <bits/stdc++.h>
 #define endl "\n"
 #define ll long long
