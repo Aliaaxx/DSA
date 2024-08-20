@@ -1,4 +1,5 @@
 ///*** https://codeforces.com/contest/253/problem/B ***///
+// Dynamic Window
 
 #include <bits/stdc++.h>
 #define endl "\n"
