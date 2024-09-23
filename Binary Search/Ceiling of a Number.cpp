@@ -1,7 +1,10 @@
 // You have an array and a Number
 // get the first number from the array that is equal to or larger that the given number
 
- int ceiling (vector<int> arr, int target) {
+int ceiling (vector<int> arr, int target) {
+    if (target > arr[arr.size() - 1]) {
+        return -1;
+    }
     int start = 0, end = arr.size() - 1;
     while (start <= end) {
         int mid = start + (end - start) / 2;
@@ -34,7 +37,13 @@ int main() {
     for(int &i : arr) cin >> i;
     int t;
     cin >> t;
-    int idx = lower_bound(arr.begin(), arr.end(), t) - arr.begin();
+    int idx;
+    if (target > arr[n - 1]) {
+        idx = -1;
+    }
+    else {
+        idx = lower_bound(arr.begin(), arr.end(), target) - arr.begin();
+    }
     cout << idx << endl;
     return 0;
 }
