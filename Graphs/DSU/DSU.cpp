@@ -7,8 +7,8 @@ using namespace std;
 vector<int> id;
 
 int find(int e) {
-    if (id[e] == e) return e;
-    else return id[e] = find(id[e]);
+    if (id[e] == e) return e; // returns the representative
+    else return id[e] = find(id[e]); // path compression
 }
 
 bool uni(int u, int v) {
