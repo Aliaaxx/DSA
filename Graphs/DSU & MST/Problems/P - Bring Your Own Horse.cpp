@@ -63,6 +63,7 @@ int main() {
             }
             cout << dist[dst] << endl;
         }
+        cout << endl;
     }
     return 0;
 }
