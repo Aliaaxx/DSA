@@ -1,3 +1,5 @@
+///*** https://www.spoj.com/problems/BLINNET/ ***///
+
 #include <bits/stdc++.h>
 #define endl "\n"
 #define ll long long
@@ -40,33 +42,13 @@ int main() {
             }
         }
         sort (edges.begin(), edges.end());
-        vector<vector<pair<int, int>>> adj(n);
+        int sum = 0;
         for (auto &[w, u, v] : edges) {
             if (uni(u, v)) {
-                adj[u].push_back({v, w});
-                adj[v].push_back({u, w});
+                sum += w;
             }
         }
-        int src = 0;
-        queue<pair<int, int>> q;
-        vector<int> dis(n, -1);
-        q.push({src, INT_MAX});
-        dis[src] = 0;
-        while (!q.empty()) {
-            auto [cur, mx] = q.front();
-            q.pop();
-            for (auto &[node, w] : adj[cur]) {
-                if (dis[node] == -1) {
-                    dis[node] = min(mx, w);
-                    q.push({node, dis[node]});
-                }
-            }
-        }
-        int ans = 0;
-        for (int i : dis) {
-            ans +=  i;
-        }
-        cout << ans << endl;
+        cout << sum << endl;
     }
     return 0;
 }
