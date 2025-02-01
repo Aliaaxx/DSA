@@ -49,7 +49,18 @@ int main() {
     cout << isCyclic(adj, n);
     return 0;
 }
+/*
+Your Question was why not to use this code for Cycle detection for Directed graph
+The Answer is this just try this test for directed graph : 
+3 3
+1 2
+1 3
+3 2
 
+Without the recursion stack, the algorithm cannot distinguish between:
+    1. A node that has been visited in a previous DFS traversal (no cycle).
+    2. A node that is part of the current DFS path (cycle).
+*/
 --------------------------------------------------------------------------------------------------------
 // Check What is going here :
 #include <bits/stdc++.h>
