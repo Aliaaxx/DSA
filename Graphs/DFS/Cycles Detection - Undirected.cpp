@@ -1,6 +1,60 @@
 #include <bits/stdc++.h>
 #define endl "\n"
 #define ll long long
+//using ll = long long;
+#define IO ios::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+using namespace std;
+
+bool dfsCycles(vector<vector<int>> adj, int src, vector<bool>& vis, int parent) {
+    vis[src] = true;
+    for (int i : adj[src]) {
+        if (!vis[i]) {
+            if (dfsCycles(adj, i, vis, src))  {
+                return true;
+            }
+        }
+        else {
+            if (i != parent) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool isCyclic(vector<vector<int>> adj, int n) {
+    vector<bool> vis(n, false);
+    for (int i = 0; i < n; i++) {
+        if (!vis[i]) {
+            if (dfsCycles(adj, i, vis, -1)) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+int main() {
+    IO;
+    int n, m;
+    cin >> n >> m;
+    vector<vector<int>> adj(n);
+    int u, v;
+    for (int i = 0; i < m; i++) {
+        cin >> u >> v;
+        u--; v--;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    cout << isCyclic(adj, n);
+    return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+// Check What is going here :
+#include <bits/stdc++.h>
+#define endl "\n"
+#define ll long long
 #define IO ios::sync_with_stdio(0); cin.tie(0); cout.tie(0)
 using namespace std;
 
