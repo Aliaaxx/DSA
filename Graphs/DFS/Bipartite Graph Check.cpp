@@ -1,3 +1,44 @@
+class Solution {
+public:
+    bool isBipartite(vector<vector<int>>& graph) {
+        return isBipartiteHelper(graph, graph.size());
+    }
+
+    bool isBipartiteHelper(vector<vector<int>>& adj, int n) {
+        vector<bool> vis(n, false);
+        vector<int> color(n, -1);
+        for (int i = 0; i < n; i++) {
+            if (!vis[i]) {
+                color[i] = 1;
+                if (!dfs(adj, color, vis, i)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    bool dfs(vector<vector<int>>& adj, vector<int>& color, vector<bool>& vis, int cur) {
+        vis[cur] = true;
+        for (int i : adj[cur]) {
+            if (color[i] == color[cur]) {
+                return false;
+            }
+            else {
+                if (!vis[i]) {
+                    color[i] = color[cur] ^ 1;
+                    if (!dfs(adj, color, vis, i)) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+};
+
+/*--------------------------------------------------------------------------------------------------*/
+
 #include <bits/stdc++.h>
 #define endl "\n"
 #define ll long long
