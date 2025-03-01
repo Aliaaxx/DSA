@@ -1,5 +1,7 @@
 ///*** https://www.spoj.com/problems/BITMAP/ ***///
 
+// took 0.06 sec and mem 5.2 M
+
 #include <bits/stdc++.h>
 #define endl "\n"
 #define ll long long
@@ -45,6 +47,85 @@ int main() {
             }
             cout << endl;
         }
+    }
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////
+// Mapping to adjacency List
+// took 0.08 sec and mem 5.5 M
+
+#include <bits/stdc++.h>
+#define endl "\n"
+#define ll long long
+//using ll = long long;
+#define IO ios::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+using namespace std;
+
+int main() {
+    IO;
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, m;
+        cin >> n >> m;
+        vector<vector<char>> grid(n, vector<char> (m));
+        string s;
+        queue<int> q;
+        vector<int> dist(n * m, -1);
+        for (int i = 0; i < n; i++) {
+            cin >> s;
+            for (int j = 0; j < m; j++) {
+                grid[i][j] = s[j];
+                if (s[j] == '1') {
+                    q.push(i * m + j);
+                    dist[i * m + j] = 0;
+                }
+            }
+        }
+        vector<vector<int>> adj(n * m);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                int node = i * m + j;
+                // Left
+                if (j > 0) {
+                    int neig = i * m + (j - 1);
+                    adj[node].push_back(neig);
+                }
+                // Right
+                if (j < m - 1) {
+                    int neig = i * m + (j + 1);
+                    adj[node].push_back(neig);
+                }
+                // Up
+                if (i > 0) {
+                    int neig = (i - 1) * m + j;
+                    adj[node].push_back(neig);
+                }
+                // down
+                if (i < n - 1) {
+                    int neig = (i + 1) * m + j;
+                    adj[node].push_back(neig);
+                }
+            }
+        }
+        while (!q.empty()) {
+            int cur = q.front();
+            q.pop();
+            for (int &i : adj[cur]) {
+                if (dist[i] == -1) {
+                    dist[i] = dist[cur] + 1;
+                    q.push(i);
+                }
+            }
+        }
+        int i = 0;
+        for (int k : dist) {
+            if (i % m == 0 and i != 0) cout << endl;
+            cout << k << " ";
+            i++;
+        }
+        cout << endl;
     }
     return 0;
 }
