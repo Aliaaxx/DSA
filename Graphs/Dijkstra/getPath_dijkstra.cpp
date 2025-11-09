@@ -22,11 +22,11 @@ pair<vector<ll>, vector<int>> dijkstra(int src, vector<vector<pair<int, ll>>>& a
                 pq.push({dist[i], i});
             }
         }
-        return {dist, par};
     }
+    return {dist, par};
 }
 
-vector<int> getPath(int src, int dest, vector<& par) {
+vector<int> getPath(int src, int dest, vector<int>& par) {
     vector<int> path;
     int cur = dest;
     while (cur!= src) {
