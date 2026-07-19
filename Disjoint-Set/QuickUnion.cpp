@@ -7,7 +7,7 @@
  * The root of a tree is the representative of the connected component.
  *
  * Time Complexity:
- *   Find()         : O(n) in the worst case
+ *   Find()         : O(n) in the worst case -> O(H) the Height of the tree and the worst case is to be a linked list (skewed tree)
  *   Union()        : O(n) (because it calls Find twice)
  *   isConnected()  : O(n)
  *
